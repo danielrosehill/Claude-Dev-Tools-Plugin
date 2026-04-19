@@ -1,0 +1,23 @@
+{
+  "name": "dev-tools",
+  "version": "1.0.0",
+  "description": "Claude Code plugin: dev tools workflow — scaffold-repo, audit-code, retrofit-claude, code-review, templatize, handover, with repo-scaffold/retrofitting/code-review/templatization/session-continuity variants.",
+  "author": {
+    "name": "Daniel Rosehill",
+    "url": "https://github.com/danielrosehill"
+  },
+  "repository": "https://github.com/danielrosehill/Claude-Dev-Tools-Plugin",
+  "license": "MIT",
+  "keywords": [
+    "dev-tools",
+    "repo-scaffold",
+    "retrofitting",
+    "code-review",
+    "qa",
+    "templatization",
+    "session-continuity",
+    "browser-automation",
+    "agent-workspace",
+    "claude-code"
+  ]
+}
