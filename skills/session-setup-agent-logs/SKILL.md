@@ -13,11 +13,22 @@ One-time setup that creates the private repo where session handovers are archive
 - User says "set up agent logs", "configure handover logging", "setup session logs"
 - The handover-writer can't find the archive repo and suggests running this
 
+## Migration from legacy path (one-time)
+
+Before resolving the data directory, check for legacy data at these paths:
+- `~/.claude/projects/-home-*/memory/reference_agent_logs.md`
+
+If a legacy file exists AND `<plugin-data-dir>/references/agent_logs.md` does NOT exist, move it to the new location and delete the legacy file. Tell the user: "Migrated reference_agent_logs.md from ~/.claude/projects/.../memory/ to <new>."
+
+## Path resolution
+
+Resolve the plugin's data directory as `$CLAUDE_USER_DATA/dev-tools/` if `CLAUDE_USER_DATA` is set; otherwise `$XDG_DATA_HOME/claude-plugins/dev-tools/` if `XDG_DATA_HOME` is set; otherwise `~/.local/share/claude-plugins/dev-tools/`. Create the directory (and a `references/` subdirectory) if it doesn't exist. See the canonical convention in the `meta-tools:plugin-data-storage` skill.
+
 ## Procedure
 
 ### 1. Check if already configured
 
-Read the user's memory directory (`~/.claude/projects/-home-*/memory/`) for a file named `reference_agent_logs.md`. If it exists, read it and confirm the path is still valid:
+Check `<plugin-data-dir>/references/agent_logs.md` for a saved Agent-Logs archive path. If it exists, read it and confirm the path is still valid:
 
 ```bash
 ls <saved-path>/README.md
@@ -108,9 +119,9 @@ gh repo create danielrosehill/Agent-Logs --private --source=. --push
 
 ### 5. Save to memory
 
-Write a memory file so future sessions know where the archive lives:
+Write a reference file so future sessions know where the archive lives:
 
-**File**: `~/.claude/projects/-home-<user>/memory/reference_agent_logs.md`
+**File**: `<plugin-data-dir>/references/agent_logs.md`
 
 ```markdown
 ---
@@ -126,11 +137,7 @@ GitHub repo: `danielrosehill/Agent-Logs` (private).
 Structure: `DDMMYY/HHMMSS_model-name.md` folders organized by date.
 ```
 
-Also add a line to `MEMORY.md`:
-
-```
-- [Agent Logs archive](reference_agent_logs.md) — private repo at <path> for session handover archival
-```
+(The reference is read directly from this path; no global memory index is needed.)
 
 ### 6. Confirm
 
