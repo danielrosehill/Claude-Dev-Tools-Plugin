@@ -7,7 +7,7 @@ allowed-tools: Bash(mkdir *), Bash(cp *), Bash(cat *), Bash(git init *), Bash(gi
 
 # Provision Dev-Tools Workspace
 
-Creates a new workspace for dev-tools workflows. This plugin's commands (`/dev-tools:qa-orchestrator`, `/dev-tools:make-agent-friendly`, `/dev-tools:session-handover`, etc.) and skills (`retrofit-*`, `session-*`, `templatize-workspace`, `janitor-*`) are globally available once installed — this skill only provisions the **data scaffold** (CLAUDE.md, context/, notes structure) that those primitives read from and write to.
+Creates a new workspace for dev-tools workflows. This plugin's commands (`/dev-tools:qa-orchestrator`, `/dev-tools:make-agent-friendly`, etc.) and skills (`templatize-workspace`, `screenshot-site`) are globally available once installed — this skill only provisions the **data scaffold** (CLAUDE.md, context/, notes structure) that those primitives read from and write to. Session-continuity skills moved to `claude-rudder@danielrosehill`.
 
 ## Arguments
 
@@ -94,7 +94,7 @@ Tell the user:
 
 - Workspace path.
 - Variant chosen.
-- Which plugin primitives apply (e.g. `/dev-tools:qa-orchestrator` for `code-review`, `retrofit-scan` skill for `retrofitting`, `/dev-tools:session-write-handover` for `session-continuity`).
+- Which plugin primitives apply (e.g. `/dev-tools:qa-orchestrator` for `code-review`, `templatize-workspace` skill for `templatization`).
 - Reminder that the workspace is **data** — they can delete/move it freely without losing the plugin's commands.
 
 ## Notes
