@@ -1,6 +1,8 @@
 # dev-tools
 
-Claude Code plugin: dev tools workflow — scaffold-repo, audit-code, retrofit-claude, code-review, templatize, handover, with repo-scaffold/retrofitting/code-review/templatization/session-continuity variants.
+Claude Code plugin: dev-tools workflow — scaffold-repo, multi-agent QA review, templatize.
+
+> Session-handover commands and the `session-handover-writer` agent moved out of dev-tools in 1.2.0. They now live in the [`claude-hopper`](https://github.com/danielrosehill/Claude-Hopper) plugin.
 
 Consolidates six former plugins — `repo-retrofitter`, `make-agent-friendly`, `qa-team`, `claude-templatizer`, `claude-janitor`, `session-transfer` — and eight template repos into one cluster plugin.
 
@@ -18,12 +20,6 @@ Part of the [danielrosehill Claude Code marketplace](https://github.com/danielro
 - `/dev-tools:qa-team-lead` — QA team lead role.
 - `/dev-tools:qa-documentation-lead` — docs-focused QA lead.
 
-**Session continuity (`session-*`):**
-- `/dev-tools:session-handover` — end-of-session menu.
-- `/dev-tools:session-write-handover` / `/dev-tools:session-quick-handover` — YAML handover files.
-- `/dev-tools:session-log-and-handover` — log + handover + spawn.
-- `/dev-tools:session-start-from-handover` — resume from a HANDOVER.md.
-
 ### Skills
 
 **Retrofitting (`retrofit-*`):**
@@ -38,16 +34,15 @@ Part of the [danielrosehill Claude Code marketplace](https://github.com/danielro
 **Session (`session-*`):**
 - `session-handover`, `session-write-handover`, `session-quick-handover`, `session-log-and-handover`, `session-start-from-handover`, `session-clipboard-handover`, `session-fork-new-direction`, `session-mirror-to-private`, `session-new-claude-at`, `session-new-claude-here`, `session-repo-from-thread`, `session-setup-agent-logs`, `session-spawn-docs-repo`, `session-spawn-planning-repo`, `session-terminal-here`, `session-junction-relay`.
 
-### Agents (26, all `qa-*` + `session-*`)
+### Agents (25, all `qa-*`)
 
 - `qa-*` — 25 specialised QA subagents (general QA, cleanup, documentation, backend (API/db/MCP), performance, UX, SEO, deployment, code-non-code separation, etc.).
-- `session-handover-writer` — writes handover documents.
 
 ### Provisioning skill
 
 - `/dev-tools:new-workspace <name> [--variant=<variant>] [--local-only] [--private]`
 
-Variants: `repo-scaffold`, `retrofitting`, `code-review`, `templatization`, `session-continuity`, `browser-automation`, `agent-workspace`.
+Variants: `repo-scaffold`, `retrofitting`, `code-review`, `templatization`, `browser-automation`, `agent-workspace`.
 
 Scaffolds a new workspace (CLAUDE.md + variant-specific structure), personalises it from `~/.claude/CLAUDE.md`, and (by default) creates a public GitHub repo for it.
 
@@ -65,7 +60,6 @@ See [PLAN.md in Claude-Workspace-Reshaping-190426](https://github.com/danielrose
 - `retrofitting` — bulk-retrofitting existing repos with Claude Code scaffolding.
 - `code-review` — holding QA findings, checklists, and reports.
 - `templatization` — extracting shared structure from multiple repos into a reusable template.
-- `session-continuity` — handovers, session logs, cross-session context.
 - `browser-automation` — reverse-engineering and scripting browser automation tasks.
 - `agent-workspace` — general-purpose structured Claude Code workspace.
 
